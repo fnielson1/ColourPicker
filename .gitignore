@@ -4,6 +4,8 @@
 *.build
 *.changes
 
+.idea
+.venv
 build
 pick.egg-info
 debian/pick/
