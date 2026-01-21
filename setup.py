@@ -33,7 +33,7 @@ setup(
     platforms='any',
 
     install_requires=[
-        'setuptools'
+        'setuptools', 'colour', 'numpy'
     ],
 
     description='A colour picker that remembers where you picked colours from',
