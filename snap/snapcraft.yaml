@@ -57,19 +57,8 @@ apps:
       - x11
 
 parts:
-  desktop-gtk3:
-    build-packages:
-      - libgtk-3-dev
-    make-parameters:
-      - FLAVOR=gtk3
-    plugin: make
-    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-    source-subdir: gtk
-
-  pick-colour-picker:
-    after:
-      - desktop-gtk3
-    source: .
+  colourpicker:
+    source: ../
     plugin: python
     python-version: python3
     stage-packages:
@@ -84,6 +73,8 @@ parts:
     override-pull: |
       snapcraftctl pull
       sed -i 's|Icon=pick-colour-picker|Icon=${SNAP}/usr/share/pixmaps/pick-colour-picker.png|g' pick-colour-picker.desktop
+    organize:
+      assets: usr/share/colourpicker/assets
     # Most of what Pick requires is provided by the GNOME platform snap; so just prime what we need.
     prime:
       - bin

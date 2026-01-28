@@ -6,6 +6,7 @@
 
 .idea
 .venv
+dist
 build
 pick.egg-info
 debian/pick/

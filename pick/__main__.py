@@ -6,10 +6,22 @@ try:
     from gi.repository import Unity
 except:
     Unity = False
+
 import cairo, math, json, os, codecs, time, subprocess, sys, base64, colorsys
 from .converters import rgb_to_lab, rgb_to_oklch, deltaE, LAB_COLOUR_NAMES
 
-__VERSION__ = "1.61.0"
+from importlib.resources import files, as_file
+from importlib.metadata import version
+
+# Resources (PEP 621 safe)
+icons_dir = files("pick").joinpath("assets/icons")
+
+# Version (from pyproject)
+try:
+    __VERSION__ = version("pick-colour-picker")
+except Exception:
+    __VERSION__ = "dev"
+
 
 class Main(object):
     def __init__(self):
@@ -145,11 +157,10 @@ class Main(object):
         else:
             # not in the theme, so we're probably running locally;
             # use the local one
-            snap_icon = os.path.join(os.path.split(__file__)[0], "..",
-                "data", "icons", "scalable", "apps",
-                "pick-colour-picker-symbolic.svg")
+            snap_icon = str(icons_dir.joinpath("hicolor", "scalable", "apps",
+                                     "pick-colour-picker-symbolic.svg"))
             flatpak_icon = ("/app/share/icons/hicolor/scalable/apps/"
-                "org.kryogenix.Pick-symbolic.svg")
+                            "org.kryogenix.Pick-symbolic.svg")
             if os.path.isfile(snap_icon):
                 image = Gtk.Image.new_from_file(snap_icon)
             elif os.path.isfile(flatpak_icon):
@@ -248,9 +259,8 @@ class Main(object):
             image = None
             # not in the theme, so we're probably running locally;
             # use the local one
-            licon = os.path.join(
-                os.path.split(__file__)[0], "..",
-                "data", "icons", "48x48", "apps", "pick-colour-picker.png")
+            licon = str(icons_dir.joinpath(
+                "hicolor", "48x48", "apps", "pick-colour-picker.png"))
             if os.path.exists(licon):
                 # print("Using local icon", licon)
                 image = Gtk.Image.new_from_file(licon)

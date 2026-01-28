@@ -24,17 +24,43 @@ snap install pick-colour-picker
 
 ### Source
 
-You'll need the following dependencies:
+You'll need the dependencies listed in `pyproject.toml`  
+Doing the steps in the **Setup** section below will install them for you.
 
-  * `gir1.2-dee-1.0`
-  * `gir1.2-gdkpixbuf-2.0`
-  * `gir1.2-glib-2.0`
-  * `gir1.2-gtk-3.0`
-  * `gir1.2-unity-5.0`
-  * `python3-cairo`
-  * `python3-gi`
-  * `python3-gi-cairo`
+**For development with a virtual environment:**
+```bash
+# Remove old venv if it exists
+rm -rf .venv
 
-Pick can be run from the checkout with `python3 -m pick`. 
+# Create venv and activate it
+python3 -m venv --system-site-packages .venv
+source .venv/bin/activate
+```
 
+#### Setup
+```bash
+./setup.sh
+```
+
+#### Running Pick
+```bash
+python3 -m pick
+```
+
+## Packaging
+
+Both Flatpak and Snap packages use the shared `assets` directory located at the project root (`/assets`). Ensure any asset updates are made in this directory.
+
+## Distribution
+Create a build of the project using the following:
+
+```bash
+sudo python3 setup.py install
+```
 A `setup.py` is present, so `python3 setup.py install` is possible, but beware that [uninstalling setup.py-installed apps is not as easy as it should be](https://github.com/stuartlangridge/ColourPicker/issues/62) and prepare accordingly if you plan to use this install method.
+
+#### (Experimental) Building a Wheel or Source Distribution
+```bash
+pip install build
+python -m build
+```

@@ -1,0 +1,3 @@
+  - name: assets
+    src: ../assets
+    dest: /app/share/colourpicker/assets

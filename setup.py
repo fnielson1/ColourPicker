@@ -4,8 +4,8 @@ import sys, os
 from setuptools import setup
 
 icons = []
-for dirpath, dirnames, filenames in os.walk("data/icons/"):
-    relpath = dirpath[len("data/icons/"):]
+for dirpath, dirnames, filenames in os.walk("pick/assets/icons/"):
+    relpath = dirpath[len("pick/assets/icons/"):]
     if relpath and filenames:
         icons.append((sys.prefix+"/share/icons/hicolor/"+relpath, [os.path.join(dirpath, x) for x in filenames]))
 
@@ -33,7 +33,7 @@ setup(
     platforms='any',
 
     install_requires=[
-        'setuptools', 'colour-science', 'numpy'
+        'setuptools'
     ],
 
     description='A colour picker that remembers where you picked colours from',

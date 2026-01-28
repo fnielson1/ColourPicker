@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pick-colour-picker"
+version = "1.61.0"
+description = "A colour picker that remembers where you picked colours from"
+readme = "README.md"
+license = { text = "MIT" }
+
+authors = [
+  { name = "Stuart Langridge", email = "sil@kryogenix.org" }
+]
+
+keywords = ["pick", "colour", "colour picker", "color", "color picker"]
+
+classifiers = [
+  "Programming Language :: Python",
+  "Environment :: X11 Applications :: GTK",
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX :: Linux",
+  "Topic :: Multimedia :: Graphics"
+]
+
+dependencies = [
+  "colour-science",
+]
+
+[tool.system-dependencies]
+system-dependencies = [
+  "gir1.2-dee-1.0",
+  "gir1.2-gdkpixbuf-2.0",
+  "gir1.2-glib-2.0",
+  "gir1.2-gtk-3.0",
+  "gir1.2-unity-7.0",
+  "python3-cairo",
+  "python3-gi",
+  "python3-gi-cairo",
+]
+
+[project.urls]
+Homepage = "https://kryogenix.org/code/pick"
+
+[project.gui-scripts]
+pick-colour-picker = "pick.__main__:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+
